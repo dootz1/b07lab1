@@ -86,11 +86,23 @@ public class Driver {
         Polynomial gProd = g1.multiply(g2);
         System.out.println("(2 - x^3)(x^2) = " + gProd);
 
+
+        System.out.println("\n=== File Tests ===");
         // File
         File file = new File("polynomial.txt");
         Polynomial h1 = new Polynomial(file);
         System.out.println("file = " + h1);
         h1.saveToFile("pout.txt");
+
+        System.out.println(new Polynomial(new File("p1.txt"))); // x
+        System.out.println(new Polynomial(new File("p2.txt"))); // +x
+        System.out.println(new Polynomial(new File("p3.txt"))); // -x
+        System.out.println(new Polynomial(new File("p4.txt"))); // 3x
+        System.out.println(new Polynomial(new File("p5.txt"))); // 20x
+        System.out.println(new Polynomial(new File("p6.txt"))); // -20x
+        System.out.println(new Polynomial(new File("p7.txt"))); // x2
+        System.out.println(new Polynomial(new File("p8.txt"))); // -x2
+        System.out.println(new Polynomial(new File("p9.txt"))); // 19x+x3-2x2
 
         /*
             === Original Examples ===
@@ -124,6 +136,15 @@ public class Driver {
             === File Tests ===
             file = 5.0-3.0x^2+7.0x^8
             File contents: 5.0-3.0x2+7.0x8
+            1.0x^1
+            1.0x^1
+            -1.0x^1
+            3.0x^1
+            20.0x^1
+            -20.0x^1
+            1.0x^2
+            -1.0x^2
+            19.0x^1+1.0x^3-2.0x^2
          */
     }
 }

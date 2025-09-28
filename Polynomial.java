@@ -34,12 +34,35 @@ public class Polynomial {
             this.coefficients = new double[terms.length];
             this.exponents = new int[terms.length];
             for (int i = 0; i < terms.length; i++) {
-                String[] s = terms[i].split("x");
                 if (terms[i].contains("x")) {
-                    this.coefficients[i] = Double.parseDouble(s[0]);
-                    this.exponents[i] = Integer.parseInt(s[1]);
-                } else {
-                    this.coefficients[i] = Double.parseDouble(s[0]);
+                    String[] s = terms[i].split("x");
+
+                    if (s.length == 0) { // x
+                        this.coefficients[i] = 1;
+                        this.exponents[i] = 1;
+                    } else { // s.length > 0
+                        if (s[0].length() == 0) { // xe
+                            this.coefficients[i] = 1;
+                        } else if (s[0].length() == 1) { // +x, -x
+                            if (s[0].charAt(0) == '+') { // +x
+                                this.coefficients[i] = 1;
+                            } else if (s[0].charAt(0) == '-') { // -x
+                                this.coefficients[i] = -1;
+                            } else { // ax, len(a) == 1
+                                this.coefficients[i] = Double.parseDouble(s[0]);
+                            }
+                        } else { // ax, len(a) > 1
+                            this.coefficients[i] = Double.parseDouble(s[0]);
+                        }
+
+                        if (s.length == 2) {
+                            this.exponents[i] = Integer.parseInt(s[1]);
+                        } else { // s.length == 1
+                            this.exponents[i] = 1;
+                        }
+                    }
+                } else { // constant case
+                    this.coefficients[i] = Double.parseDouble(terms[i]);
                     this.exponents[i] = 0;
                 }
             }
